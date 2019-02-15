@@ -1,0 +1,9 @@
+0.8.8
+groff
+libxml2-dev
+libxslt-bin
+openjdk
+perl(XML::NamespaceSupport)
+perl(XML::SAX::Exception)
+perl(XML::SAX::ParserFactory)
+texinfo
