@@ -4,7 +4,7 @@
 #
 Name     : docbook2X
 Version  : 0.8.8
-Release  : 1
+Release  : 2
 URL      : http://downloads.sourceforge.net/docbook2x/docbook2X-0.8.8.tar.gz
 Source0  : http://downloads.sourceforge.net/docbook2x/docbook2X-0.8.8.tar.gz
 Summary  : No detailed summary available
@@ -81,7 +81,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1550270939
+export SOURCE_DATE_EPOCH=1550274149
 %configure --disable-static
 make  %{?_smp_mflags}
 
@@ -93,7 +93,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check || :
 
 %install
-export SOURCE_DATE_EPOCH=1550270939
+export SOURCE_DATE_EPOCH=1550274149
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/docbook2X
 cp COPYING %{buildroot}/usr/share/package-licenses/docbook2X/COPYING
@@ -104,11 +104,11 @@ cp COPYING %{buildroot}/usr/share/package-licenses/docbook2X/COPYING
 
 %files bin
 %defattr(-,root,root,-)
+%exclude /usr/bin/docbook2man
+%exclude /usr/bin/docbook2texi
 /usr/bin/db2x_manxml
 /usr/bin/db2x_texixml
 /usr/bin/db2x_xsltproc
-/usr/bin/docbook2man
-/usr/bin/docbook2texi
 /usr/bin/sgml2xml-isoent
 /usr/bin/utf8trans
 
