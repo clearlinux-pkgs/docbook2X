@@ -2,3 +2,5 @@
 # names, one per line.
 /usr/bin/docbook2man
 /usr/bin/docbook2texi
+/usr/share/man/man1/docbook2texi.1
+/usr/share/man/man1/docbook2man.1
