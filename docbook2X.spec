@@ -5,8 +5,8 @@
 Name     : docbook2X
 Version  : 0.8.8
 Release  : 3
-URL      : http://downloads.sourceforge.net/docbook2x/docbook2X-0.8.8.tar.gz
-Source0  : http://downloads.sourceforge.net/docbook2x/docbook2X-0.8.8.tar.gz
+URL      : https://sourceforge.net/projects/docbook2x/files/docbook2x/0.8.8/docbook2X-0.8.8.tar.gz
+Source0  : https://sourceforge.net/projects/docbook2x/files/docbook2x/0.8.8/docbook2X-0.8.8.tar.gz
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : MIT
