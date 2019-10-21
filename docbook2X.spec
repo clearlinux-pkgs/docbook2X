@@ -4,7 +4,7 @@
 #
 Name     : docbook2X
 Version  : 0.8.8
-Release  : 3
+Release  : 4
 URL      : https://sourceforge.net/projects/docbook2x/files/docbook2x/0.8.8/docbook2X-0.8.8.tar.gz
 Source0  : https://sourceforge.net/projects/docbook2x/files/docbook2x/0.8.8/docbook2X-0.8.8.tar.gz
 Summary  : No detailed summary available
@@ -18,7 +18,6 @@ BuildRequires : buildreq-cpan
 BuildRequires : groff
 BuildRequires : libxml2-dev
 BuildRequires : libxslt-bin
-BuildRequires : openjdk
 BuildRequires : perl(XML::NamespaceSupport)
 BuildRequires : perl(XML::SAX::Exception)
 BuildRequires : perl(XML::SAX::ParserFactory)
@@ -34,7 +33,6 @@ Summary: bin components for the docbook2X package.
 Group: Binaries
 Requires: docbook2X-data = %{version}-%{release}
 Requires: docbook2X-license = %{version}-%{release}
-Requires: docbook2X-man = %{version}-%{release}
 
 %description bin
 bin components for the docbook2X package.
@@ -80,32 +78,40 @@ man components for the docbook2X package.
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
-export SOURCE_DATE_EPOCH=1550277777
+export LANG=C.UTF-8
+export SOURCE_DATE_EPOCH=1571680046
+export GCC_IGNORE_WERROR=1
+export CFLAGS="$CFLAGS -fno-lto "
+export FCFLAGS="$CFLAGS -fno-lto "
+export FFLAGS="$CFLAGS -fno-lto "
+export CXXFLAGS="$CXXFLAGS -fno-lto "
 %configure --disable-static
 make  %{?_smp_mflags}
 
 %check
-export LANG=C
+export LANG=C.UTF-8
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check || :
 
 %install
-export SOURCE_DATE_EPOCH=1550277777
+export SOURCE_DATE_EPOCH=1571680046
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/docbook2X
-cp COPYING %{buildroot}/usr/share/package-licenses/docbook2X/COPYING
+cp %{_builddir}/docbook2X-0.8.8/COPYING %{buildroot}/usr/share/package-licenses/docbook2X/920a513690cafc40211a7a9c74df580d329c126b
 %make_install
+## Remove excluded files
+rm -f %{buildroot}/usr/bin/docbook2man
+rm -f %{buildroot}/usr/bin/docbook2texi
+rm -f %{buildroot}/usr/share/man/man1/docbook2texi.1
+rm -f %{buildroot}/usr/share/man/man1/docbook2man.1
 
 %files
 %defattr(-,root,root,-)
 
 %files bin
 %defattr(-,root,root,-)
-%exclude /usr/bin/docbook2man
-%exclude /usr/bin/docbook2texi
 /usr/bin/db2x_manxml
 /usr/bin/db2x_texixml
 /usr/bin/db2x_xsltproc
@@ -253,12 +259,10 @@ cp COPYING %{buildroot}/usr/share/package-licenses/docbook2X/COPYING
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/docbook2X/COPYING
+/usr/share/package-licenses/docbook2X/920a513690cafc40211a7a9c74df580d329c126b
 
 %files man
 %defattr(0644,root,root,0755)
-%exclude /usr/share/man/man1/docbook2man.1
-%exclude /usr/share/man/man1/docbook2texi.1
 /usr/share/man/man1/db2x_manxml.1
 /usr/share/man/man1/db2x_texixml.1
 /usr/share/man/man1/db2x_xsltproc.1
