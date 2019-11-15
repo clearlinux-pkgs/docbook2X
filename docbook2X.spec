@@ -4,7 +4,7 @@
 #
 Name     : docbook2X
 Version  : 0.8.8
-Release  : 4
+Release  : 5
 URL      : https://sourceforge.net/projects/docbook2x/files/docbook2x/0.8.8/docbook2X-0.8.8.tar.gz
 Source0  : https://sourceforge.net/projects/docbook2x/files/docbook2x/0.8.8/docbook2X-0.8.8.tar.gz
 Summary  : No detailed summary available
@@ -12,6 +12,7 @@ Group    : Development/Tools
 License  : MIT
 Requires: docbook2X-bin = %{version}-%{release}
 Requires: docbook2X-data = %{version}-%{release}
+Requires: docbook2X-info = %{version}-%{release}
 Requires: docbook2X-license = %{version}-%{release}
 Requires: docbook2X-man = %{version}-%{release}
 BuildRequires : buildreq-cpan
@@ -50,9 +51,18 @@ data components for the docbook2X package.
 Summary: doc components for the docbook2X package.
 Group: Documentation
 Requires: docbook2X-man = %{version}-%{release}
+Requires: docbook2X-info = %{version}-%{release}
 
 %description doc
 doc components for the docbook2X package.
+
+
+%package info
+Summary: info components for the docbook2X package.
+Group: Default
+
+%description info
+info components for the docbook2X package.
 
 
 %package license
@@ -73,13 +83,14 @@ man components for the docbook2X package.
 
 %prep
 %setup -q -n docbook2X-0.8.8
+cd %{_builddir}/docbook2X-0.8.8
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1571680046
+export SOURCE_DATE_EPOCH=1573791809
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto "
 export FCFLAGS="$CFLAGS -fno-lto "
@@ -96,7 +107,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check || :
 
 %install
-export SOURCE_DATE_EPOCH=1571680046
+export SOURCE_DATE_EPOCH=1573791809
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/docbook2X
 cp %{_builddir}/docbook2X-0.8.8/COPYING %{buildroot}/usr/share/package-licenses/docbook2X/920a513690cafc40211a7a9c74df580d329c126b
@@ -255,7 +266,12 @@ rm -f %{buildroot}/usr/share/man/man1/docbook2man.1
 %files doc
 %defattr(0644,root,root,0755)
 %doc /usr/share/doc/docbook2X/*
-%doc /usr/share/info/*
+
+%files info
+%defattr(0644,root,root,0755)
+/usr/share/info/docbook2X.info
+/usr/share/info/docbook2man-xslt.info
+/usr/share/info/docbook2texi-xslt.info
 
 %files license
 %defattr(0644,root,root,0755)
