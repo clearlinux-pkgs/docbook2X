@@ -4,7 +4,7 @@
 #
 Name     : docbook2X
 Version  : 0.8.8
-Release  : 6
+Release  : 7
 URL      : https://sourceforge.net/projects/docbook2x/files/docbook2x/0.8.8/docbook2X-0.8.8.tar.gz
 Source0  : https://sourceforge.net/projects/docbook2x/files/docbook2x/0.8.8/docbook2X-0.8.8.tar.gz
 Summary  : No detailed summary available
